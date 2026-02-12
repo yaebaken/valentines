@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSFiddle a0ody6eL</title>
+
+  <style>
+    
+  </style>
+
+  
+</head>
+<body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #f4f4f4;
+        overflow: hidden;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+    }
+
+    .main-img {
+        width: 200px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+    }
+
+    /* Buttons start centered */
+    #buttonRow {
+        display: flex;
+        gap: 20px;
+        position: relative;
+    }
+
+    button {
+        padding: 15px 30px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    #yesBtn {
+        transition: font-size 0.3s ease;
+    }
+
+    #noBtn {
+        transition: transform 0.2s ease;
+    }
+
+    /* Popup styles */
+    .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .popup-content {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        width: 300px;
+    }
+
+    .popup-content img {
+        width: 200px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .popup-content button {
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXVoN244ZWEzbDhjaDFob2luNDlhY2I4N3BycDY3bGpqM3puZ2psNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vDhDcIEmShbUI/giphy.gif" class="main-img" alt="Funny GIF">
+
+
+
+<div id="buttonRow">
+    <button id="yesBtn">YES</button>
+    <button id="noBtn">NO</button>
+</div>
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <img id="popupImg" src="" alt="popup gif">
+        <p id="popupText"></p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<script>
+let noClicks = 0;
+let yesSize = 20;
+let hasMoved = false;
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const row = document.getElementById("buttonRow");
+
+yesBtn.addEventListener("click", () => {
+    showPopup(
+        "Muehehehehe, you don't have any choices 😏",
+        "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3dndjd6cjViODAybTN3cDI4ZmpxcGVlOXB5dDY4YXE5NjJuM3Q1dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4nwpVtU1zyxan7Lq2F/giphy.gif"
+    );
+});
+
+noBtn.addEventListener("click", () => {
+    noClicks++;
+    yesSize += 5;
+    yesBtn.style.fontSize = yesSize + "px";
+
+    if (noClicks === 10) {
+        showPopup(
+            "Ahh okay, sige 😅",
+            "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWVweXJnZGhrOXUwZWljMHZ0ODUwbHNldGVrY3p3bnh4dTFkcjdnaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Fr2UB3zizQSNWzCy52/giphy.gif"
+        );
+    }
+});
+
+// NO button moves away when hovered
+noBtn.addEventListener("mouseenter", () => {
+    if (!hasMoved) {
+        const rect = noBtn.getBoundingClientRect();
+        const parentRect = row.getBoundingClientRect();
+
+        noBtn.style.position = "absolute";
+        noBtn.style.left = (rect.left - parentRect.left) + "px";
+        noBtn.style.top = "0px";
+
+        hasMoved = true;
+    }
+
+    const randomX = (Math.random() * 300) - 150;
+    const randomY = (Math.random() * 150) - 75;
+
+    noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+});
+
+function showPopup(message, imgUrl){
+    document.getElementById("popupText").textContent = message;
+    document.getElementById("popupImg").src = imgUrl;
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
+
+  <script>
+    
+  </script>
+</body>
+</html>
